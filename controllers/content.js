@@ -1,5 +1,6 @@
 
 import { Content } from '../models/content.js'
+import rp from 'request-promise'
 
 // Get
 export const getContent = async (req, res) => {
@@ -13,10 +14,11 @@ export const getContent = async (req, res) => {
  * don't forget why your are reading this code
  */
 async function getDummyData() {
-    const data = ['data_one', 'data_two']
-    data.forEach(d => {
-        db.set(d)
-    })
+    const data = ['data_one', 'data_two','test1','test2']
+      //exporting all databse is not a good practice
+    //using Content model to add data to databse
+    data.forEach(async d => await Content.addData(d))
+
     console.log(await db.getAll())
 }
 
